@@ -1,6 +1,19 @@
 #we're creating a field element so we can define ECC math
 # this is straight out of the Programming Bitcoin book
 
+class Point:
+    def __init__(self,x,y,a,b):
+        #y^2 = x^3 + ax + b
+        self.a = a
+        self.b = b
+        self.x = x
+        self.y = y
+        if self.y**2 != self.x**3 + a * x + b:
+            raise ValueError('({},{}) is not on the curve.'.format(x,y))
+    def __eq__(self,other):
+        return self.x == other.x and self.y == other.y \
+            and self.a == other.a and self.b == other.b
+
 class FieldElement:
 
     def __init__(self,num,prime):
@@ -26,7 +39,8 @@ class FieldElement:
             error = 'Cannot add two numbers in different prime fields.'
             raise TypeError(error)
         num = (self.num + o.num) % self.prime
-        #could just return a FieldElement here but this provides a better mechanism for inheritance.
+        #could just return a FieldElement here
+        #but this provides a better mechanism for inheritance.
         return self.__class__(num,self.prime)
     
     def __sub__(self,o):

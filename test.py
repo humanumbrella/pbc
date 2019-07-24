@@ -1,4 +1,9 @@
-from ecc import FieldElement
+from ecc import FieldElement, Point
+
+#p1 = Point(2,4,5,7)
+p2 = Point(-1,-1,5,7)
+p3 = Point(18,77,5,7)
+#p4 = Point(5,7,5,7)
 
 a = FieldElement(7,13)
 b = FieldElement(12,13)
@@ -21,3 +26,4 @@ print(aa*dd == aa)
 
 print(aa**3 == dd)
 print(aa**-3 == dd)
+
