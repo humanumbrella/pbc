@@ -16,6 +16,9 @@ class Point:
         return self.x == other.x and self.y == other.y \
             and self.a == other.a and self.b == other.b
 
+    def __neq__(self, o):
+        return not(self == o)  # This would mean self.num != o.num and self.prime != o.prime
+
 
 class FieldElement:
 
@@ -24,6 +27,7 @@ class FieldElement:
             error = 'Num {} not in field range 0 to {}'.format(num, prime-1)
             raise ValueError(error)
         self.num = num
+        # FIXZME -- is prime prime? lol
         self.prime = prime
 
     def __repr__(self):
